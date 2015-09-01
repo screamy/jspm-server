@@ -3,6 +3,7 @@ var liveServer = require("./index");
 
 var opts = {
 	proxyServer: null,
+	useHttp2: false,
 	port: process.env.PORT,
 	open: true,
 	logLevel: 2,
@@ -23,6 +24,11 @@ for (var i = process.argv.length-1; i >= 2; --i) {
 
 	else if (arg.indexOf("--proxy=") > -1) {
 		opts.proxyServer = arg.substring(8);
+		process.argv.splice(i, 1);
+	}
+
+	else if (arg.indexOf("--use-http2") > -1) {
+		opts.useHttp2 = true;
 		process.argv.splice(i, 1);
 	}
 
